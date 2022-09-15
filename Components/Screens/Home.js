@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Header } from 'react-native/Libraries/NewAppScreen';
 
 var table_1 = [
     {"#" : 156487, "Description" : "part for airplane landing gear", "Status" : "In-progress"},
@@ -28,8 +29,9 @@ class HomeScreen extends Component{
 
     render(){
         return (
-            <View style = {styles.main}>
-                <h1> This is the Home Screen</h1>
+            <View >
+                
+                
             </View>
         )
     }
@@ -37,10 +39,23 @@ class HomeScreen extends Component{
 
 const styles = StyleSheet.create({
     main :{
-        flex : 1,
+        flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
+    },
+
+    header: {
+        flex: 2,
+        backgroundColor: 'orange',
         justifyContent: 'center',
+        width: "auto",
+
+        
+    },
+
+    body:{
+        flex: 3,
+        backgroundColor: 'yellow'
+
     }
 })
 
