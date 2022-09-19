@@ -1,23 +1,62 @@
 import { StatusBar } from 'expo-status-bar';
 import { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeScreen from './Screens/Home';
+import Signup from './Screens/Signup';
+import Login from './Screens/Login';
+
+
+const Stack  = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 class Navigator extends Component{
     constructor(props){
         super(props);
         this.state = {
             logged : false,
+            count : 0,
         }
+        this.updateStatus = this.updateStatus.bind(this);
+    }
+
+    updateStatus = () => {
+        this.setState({
+            logged: !this.state.logged,
+            count: this.state.count +1
+        })
     }
 
     render(){
-        return (
-            <View style = {styles.main}>
-                <View style = {styles.header}>
-                    <Text style = {styles.headline}>This is the Navigator</Text>
-                </View>
-            </View>
-        )
+        
+        const isLoggedIn = this.state.logged;
+
+        if (isLoggedIn) {
+            return(
+                <NavigationContainer>
+                    <Tab.Navigator initialRouteName='Home'>
+                        <Tab.Screen name = 'Home' component={HomeScreen}/>
+                    </Tab.Navigator>
+                </NavigationContainer>
+            )
+        }else{
+            return (
+                <NavigationContainer>
+                    <Tab.Navigator initialRouteName='Login'>
+                        <Tab.Screen name = 'Login'>
+                            <Login 
+                                Count = {this.state.count} 
+                                isLogged = {isLoggedIn} 
+                                updateState = {this.updateStatus}
+                            />
+                        </Tab.Screen>
+                        <Tab.Screen name = 'Signup' component={Signup}/>
+                    </Tab.Navigator>
+                </NavigationContainer>
+            )
+        }
     }
 }
 

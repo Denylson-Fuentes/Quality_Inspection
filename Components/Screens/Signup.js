@@ -8,7 +8,7 @@ class Signup extends Component{
         this.state = {
             username : "",
             password: "",
-            confirmpass: "",
+            confirmPass: "",
             email: "",
 
         }
@@ -18,7 +18,7 @@ class Signup extends Component{
         return (
             <View >
                 
-                
+                <Text> This is the Sign up Screen</Text>
             </View>
         )
     }

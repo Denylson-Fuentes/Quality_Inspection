@@ -31,7 +31,7 @@ class HomeScreen extends Component{
         return (
             <View >
                 
-                
+                <Text>This is the Home Screen</Text>
             </View>
         )
     }

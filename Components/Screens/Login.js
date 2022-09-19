@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+
+
 
 class Login extends Component{
     constructor(props){
@@ -11,11 +13,19 @@ class Login extends Component{
         }
     }
 
+    onPress = () =>{
+        this.props.updateState()
+    }
+
     render(){
         return (
             <View >
-                
-                
+                <Text> This is the Login Screen</Text>
+                    <Button
+                    onPress={this.onPress}
+                    title="Increase Count"
+                    color="#841584"
+                    />
             </View>
         )
     }
