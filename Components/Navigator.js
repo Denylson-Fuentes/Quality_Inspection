@@ -3,11 +3,10 @@ import { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './Screens/Home';
-import Signup from './Screens/Signup';
-import Login from './Screens/Login';
-
+import SignupScreen from './Screens/Signup';
+import LoginScreen from './Screens/Login'
 
 const Stack  = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -36,7 +35,9 @@ class Navigator extends Component{
         if (isLoggedIn) {
             return(
                 <NavigationContainer>
-                    <Tab.Navigator initialRouteName='Home'>
+                    <Tab.Navigator 
+                        initialRouteName='Home'
+                    >
                         <Tab.Screen name = 'Home' component={HomeScreen}/>
                     </Tab.Navigator>
                 </NavigationContainer>
@@ -44,15 +45,22 @@ class Navigator extends Component{
         }else{
             return (
                 <NavigationContainer>
-                    <Tab.Navigator initialRouteName='Login'>
-                        <Tab.Screen name = 'Login'>
-                            <Login 
-                                Count = {this.state.count} 
-                                isLogged = {isLoggedIn} 
-                                updateState = {this.updateStatus}
-                            />
+                    <Tab.Navigator 
+                        initialRouteName='Login'
+                    >
+                        <Tab.Screen name = 'Login' >
+                            {(props) => <LoginScreen 
+                                            Count = {this.state.count} 
+                                            isLogged = {isLoggedIn}  
+                                            updateStatus = {this.updateStatus}
+                                        />
+                            }
                         </Tab.Screen>
-                        <Tab.Screen name = 'Signup' component={Signup}/>
+                        <Tab.Screen 
+                            name = 'Signup' 
+                            component={SignupScreen}
+                        />
+                        
                     </Tab.Navigator>
                 </NavigationContainer>
             )

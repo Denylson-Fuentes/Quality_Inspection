@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-class Signup extends Component{
+class SignupScreen extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -17,7 +17,6 @@ class Signup extends Component{
     render(){
         return (
             <View >
-                
                 <Text> This is the Sign up Screen</Text>
             </View>
         )
@@ -31,4 +30,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Signup;
+export default SignupScreen;

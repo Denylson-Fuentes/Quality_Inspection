@@ -4,7 +4,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 
 
-class Login extends Component{
+class LoginScreen extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -21,11 +21,11 @@ class Login extends Component{
         return (
             <View >
                 <Text> This is the Login Screen</Text>
-                    <Button
+                    {/* <Button
                     onPress={this.onPress}
                     title="Increase Count"
                     color="#841584"
-                    />
+                    /> */}
             </View>
         )
     }
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Login;
+export default LoginScreen;
