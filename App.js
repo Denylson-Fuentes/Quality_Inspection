@@ -1,19 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import LoginProvider from './Components/Context/LoginProvider';
+import { NavigationContainer } from '@react-navigation/native';
 import Navigator from './Components/Navigator';
+
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Navigator/>
-    </View>
+    <LoginProvider>
+        <NavigationContainer>
+            <Navigator/>
+        </NavigationContainer>
+    </LoginProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
