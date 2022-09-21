@@ -6,7 +6,9 @@ import { useLogin } from '../Context/LoginProvider';
 
 
 const LoginScreen  = () =>{
-    const {setIsLoggedIn} = useLogin()
+    const {login} = useLogin()
+
+
     const [userInfo, setUserInfo] = useState({
         email:  '',
         password: '',
@@ -16,10 +18,6 @@ const LoginScreen  = () =>{
 
     const handleOnChangeText = (value, fieldName) =>{
         setUserInfo({...userInfo, [fieldName]:value})
-    }
-
-    onPress = () =>{
-        setIsLoggedIn(true)
     }
 
     return (
@@ -44,12 +42,11 @@ const LoginScreen  = () =>{
                 /> 
 
                 
-                <TouchableOpacity
-                    style = {styles.submitButton}
-                    onPress = {onPress}
-                >
-                    <Text style = {styles.submitButtonText}> Sign up </Text>
-                </TouchableOpacity>
+                <Button 
+                    onPress={ () => login(email)} 
+                    title = "Log out"
+                    color = '#9a73ef'
+                />
         </View>
     )
 }

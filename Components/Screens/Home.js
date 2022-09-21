@@ -27,22 +27,19 @@ var table_3 = [
 ]
 
 const  HomeScreen  = () =>{
-    const {setIsLoggedIn} = useLogin()
-
-    const logOut = () =>{
-        
-        setIsLoggedIn(false)
-    }
+    const {user ,logout} = useLogin()
 
     return (
         <View >
             
             <Text>This is the Home Screen</Text>
+            <Text>{user.name}</Text>
 
-            <Button
-                onPress={logOut}
-                title="Log out"
-                color="#841584"
+
+            <Button 
+                onPress={ () => logout()} 
+                title = "Log out"
+                color = '#9a73ef'
             />
         </View>
     )

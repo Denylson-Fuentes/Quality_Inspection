@@ -10,9 +10,9 @@ import MainNavigator from './Navigators/MainNavigator';
 import LoginProvider, { useLogin } from './Context/LoginProvider';
 
 const Navigator = () =>{
-    const {isLoggedIn} = useLogin()
+    const {user} = useLogin()
 
-    return isLoggedIn ? <MainNavigator/> : <AuthNavigator/>
+    return user.auth ? <MainNavigator/> : <AuthNavigator/>
 }
 
 

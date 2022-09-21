@@ -1,15 +1,35 @@
 import React, { createContext, useContext, useState } from 'react';
 
-const LoginContext = createContext();
+const UserContext = createContext();
 
-const LoginProvider = ({children}) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-    return <LoginContext.Provider value = {{isLoggedIn, setIsLoggedIn}}  >
+const UserProvider = ({ children }) => {
+    // User is the name of the "data" that gets stored in context
+    const [user, setUser] = useState({ name: '', auth: false });
+  
+    // Login updates the user data with a name parameter
+    const login = (name) => {
+      setUser((user) => ({
+        name: name,
+        auth: true,
+      }));
+    };
+  
+    // Logout updates the user data to default
+    const logout = () => {
+      setUser((user) => ({
+        name: '',
+        auth: false,
+      }));
+    };
+  
+    return (
+      <UserContext.Provider value={{ user, login, logout }}>
         {children}
-    </LoginContext.Provider>
-}
+      </UserContext.Provider>
+    );
+  }
 
-export const useLogin = () => useContext(LoginContext);
 
-export default LoginProvider;
+export const useLogin = () => useContext(UserContext);
+
+export default UserProvider;
