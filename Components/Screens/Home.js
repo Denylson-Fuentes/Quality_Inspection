@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import { useLogin } from '../Context/LoginProvider';
 
 var table_1 = [
     {"#" : 156487, "Description" : "part for airplane landing gear", "Status" : "In-progress"},
@@ -25,16 +26,26 @@ var table_3 = [
     {"#" : 212368, "Status" : "In-Progress"}
 ]
 
-class HomeScreen extends Component{
+const  HomeScreen  = () =>{
+    const {setIsLoggedIn} = useLogin()
 
-    render(){
-        return (
-            <View >
-                
-                <Text>This is the Home Screen</Text>
-            </View>
-        )
+    const logOut = () =>{
+        
+        setIsLoggedIn(false)
     }
+
+    return (
+        <View >
+            
+            <Text>This is the Home Screen</Text>
+
+            <Button
+                onPress={logOut}
+                title="Log out"
+                color="#841584"
+            />
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({

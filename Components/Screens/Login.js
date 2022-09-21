@@ -1,40 +1,81 @@
 import { StatusBar } from 'expo-status-bar';
-import { Component } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Component, useState } from 'react';
+import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useLogin } from '../Context/LoginProvider';
 
 
 
-class LoginScreen extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            username: "",
-            password: "",
-        }
+const LoginScreen  = () =>{
+    const {setIsLoggedIn} = useLogin()
+    const [userInfo, setUserInfo] = useState({
+        email:  '',
+        password: '',
+    })
+
+    const {email, password}  = userInfo;
+
+    const handleOnChangeText = (value, fieldName) =>{
+        setUserInfo({...userInfo, [fieldName]:value})
     }
 
     onPress = () =>{
-        this.props.updateState()
+        setIsLoggedIn(true)
     }
 
-    render(){
-        return (
-            <View >
-                <Text> This is the Login Screen</Text>
-                    {/* <Button
-                    onPress={this.onPress}
-                    title="Increase Count"
-                    color="#841584"
-                    /> */}
-            </View>
-        )
-    }
+    return (
+        <View >
+            <Text> This is the Login Screen</Text>
+
+                <TextInput
+                    style = {styles.input}
+                    placeholder='Email'
+                    placeholderTextColor = "#9a73ef"
+                    value = {email}
+                    onChangeText = {value => handleOnChangeText(value, 'email')}
+
+                /> 
+
+                <TextInput
+                    style = {styles.input}
+                    placeholder='Password'
+                    placeholderTextColor = "#9a73ef"
+                    value = {password}
+                    onChangeText = {value => handleOnChangeText(value, 'password')}
+                /> 
+
+                
+                <TouchableOpacity
+                    style = {styles.submitButton}
+                    onPress = {onPress}
+                >
+                    <Text style = {styles.submitButtonText}> Sign up </Text>
+                </TouchableOpacity>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
     main :{
         flex: 1,
         backgroundColor: '#fff',
+    },
+
+    input: {
+        margin: 15,
+        height: 40,
+        borderColor: '#7a42f4',
+        borderWidth: 1
+    },
+
+    submitButton: {
+        backgroundColor: '#7a42f4',
+        padding: 10,
+        margin: 15,
+        height: 40,
+    },
+
+    submitButtonText:{
+        color: 'white'
     },
 })
 
