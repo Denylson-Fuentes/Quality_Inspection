@@ -44,8 +44,9 @@ const LoginScreen  = () =>{
                 
                 <Button 
                     onPress={ () => login(email)} 
-                    title = "Log out"
+                    title = "Login"
                     color = '#9a73ef'
+                    
                 />
         </View>
     )
