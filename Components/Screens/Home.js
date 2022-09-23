@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import { useLogin } from '../Context/LoginProvider';
+import TableLayout from '../Table';
 
 var table_1 = [
     {Number : 156487, Description : "part for airplane landing gear", Status : "In-progress"},
@@ -13,17 +14,17 @@ var table_1 = [
 ]
 
 var table_2 = [
-    {"Machine" : "Conveyor_1", "Status" : "Functional"},
-    {"Machine" : "Arm_5", "Status" : "Non-Functional"},
-    {"Machine" : "Solder_3", "Status": "Functional"},
-    {"Machine" : "Sorter_1", "Status" : "Non-Functional"}
+    {Machine : "Conveyor_1", Status : "Functional"},
+    {Machine : "Arm_5", Status : "Non-Functional"},
+    {Machine : "Solder_3", Status: "Functional"},
+    {Machine : "Sorter_1", Status : "Non-Functional"}
 ]
 
 var table_3 = [
-    {"#" : 541885, "Status" : "In-Progress"},
-    {"#" : 412542, "Status" : "Complete"},
-    {"#" : 123265, "Status" : "Starting"},
-    {"#" : 212368, "Status" : "In-Progress"}
+    {Number : 541885, Status : "In-Progress"},
+    {Number : 412542, Status : "Complete"},
+    {Number : 123265, Status : "Starting"},
+    {Number : 212368, Status : "In-Progress"}
 ]
 
 const  HomeScreen  = () =>{
@@ -43,33 +44,7 @@ const  HomeScreen  = () =>{
                     <DataTable.Title>Status</DataTable.Title>
                 </DataTable.Header>
 
-                {
-                    table_1.map( item => {
-                        return(
-                            <DataTable.Row style = {{justifyContent: 'space-between', borderColor: '#000'}}  key = {item.Number}>
-                                <DataTable.Cell style={{ flex: 0.5, justifyContent: 'space-between' }} textStyle={{fontFamily:"Avenir", fontSize:20}} numeric>
-                                    <Text style={{ color: "#9a73ef" }}>
-                                        {item.Number}
-                                    </Text>
-                                </DataTable.Cell>
-
-                                <DataTable.Cell style={{ flex: 0.5, justifyContent: 'space-between' }} textStyle={{fontFamily:"Avenir", fontSize:20}} >
-                                    <Text style={{ color: "#9a73ef" }}>
-                                        {item.Description}
-                                    </Text>
-                                </DataTable.Cell>
-                                
-                                <DataTable.Cell  style={{ flex: 0.5, justifyContent: 'space-between' }} textStyle={{fontFamily:"Avenir", fontSize:20}}>
-                                    <Text style={{ color: "#9a73ef" }}>
-                                        {item.Status}
-                                    </Text>
-                                </DataTable.Cell>
-                            </DataTable.Row>
-                        )
-                    })
-                }
-
-
+                <TableLayout data = {table_1}/>
 
             </DataTable>
 
@@ -104,8 +79,15 @@ const styles = StyleSheet.create({
 
     },
 
-    cell: {
-        borderColor: 'black'
+    cell:  {
+        flex: 0.5, 
+        justifyContent: 'space-between', 
+        borderWidth: 1, borderColor: "#9a73ef"
+    },
+
+    cell_text : {
+        fontFamily:"Avenir", 
+        fontSize:20,
     }
 })
 
