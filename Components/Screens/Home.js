@@ -3,7 +3,6 @@ import { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import { useLogin } from '../Context/LoginProvider';
-import TableLayout from '../Table';
 
 var table_1 = [
     {Number : 156487, Description : "part for airplane landing gear", Status : "In-progress"},
@@ -27,6 +26,30 @@ var table_3 = [
     {Number : 212368, Status : "In-Progress"}
 ]
 
+const Workorder = (item) =>{
+    return (
+        <DataTable.Row  key = {item.list.Number}>
+            <DataTable.Cell style={styles.cell} textStyle={styles.cell_text} numeric>
+                <Text style={{ color: "#9a73ef" }}>
+                    {item.list.Number}
+                </Text>
+            </DataTable.Cell>
+
+            <DataTable.Cell style={styles.cell} textStyle={styles.cell_text} >
+                <Text style={{ color: "#9a73ef" }}>
+                    {item.list.Description}
+                </Text>
+            </DataTable.Cell>
+            
+            <DataTable.Cell  style={styles.cell} textStyle={styles.cell_text}>
+                <Text style={{ color: "#9a73ef" }}>
+                    {item.list.Status}
+                </Text>
+            </DataTable.Cell>
+        </DataTable.Row>
+    )
+}
+
 const  HomeScreen  = () =>{
     const {user ,logout} = useLogin()
 
@@ -44,9 +67,13 @@ const  HomeScreen  = () =>{
                     <DataTable.Title>Status</DataTable.Title>
                 </DataTable.Header>
 
-                <TableLayout data = {table_1}/>
+                {table_1.map((item, i) =>{
+                    return <Workorder list = {item} key = {i} />
+                    })
+                }
 
             </DataTable>
+
 
 
             <Button 
