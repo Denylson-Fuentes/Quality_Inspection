@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import { useLogin } from '../Context/LoginProvider';
 
@@ -50,21 +50,61 @@ const Workorder = (item) =>{
     )
 }
 
+const Machines = (item) => {
+    return (
+        <DataTable.Row  key = {item.list.Machine}>
+            <DataTable.Cell style={styles.cell} textStyle={styles.cell_text}>
+                <Text style={{ color: "#9a73ef" }}>
+                    {item.list.Machine}
+                </Text>
+            </DataTable.Cell>
+            
+            <DataTable.Cell  style={styles.cell} textStyle={styles.cell_text}>
+                <Text style={{ color: "#9a73ef" }}>
+                    {item.list.Status}
+                </Text>
+            </DataTable.Cell>
+        </DataTable.Row>
+    )
+}
+
+const Parts = (item) => {
+    return (
+        <DataTable.Row  key = {item.list.Number}>
+            <DataTable.Cell style={styles.cell} textStyle={styles.cell_text}>
+                <Text style={{ color: "#9a73ef" }}>
+                    {item.list.Number}
+                </Text>
+            </DataTable.Cell>
+            
+            <DataTable.Cell  style={styles.cell} textStyle={styles.cell_text}>
+                <Text style={{ color: "#9a73ef" }}>
+                    {item.list.Status}
+                </Text>
+            </DataTable.Cell>
+        </DataTable.Row>
+    )
+}
+
 const  HomeScreen  = () =>{
     const {user ,logout} = useLogin()
 
     return (
-        <View >
+        <ScrollView>
             
             <Text>This is the Home Screen</Text>
             <Text>{user.name}</Text>
 
-            <DataTable>
+            <DataTable style = {styles.table} >
 
                 <DataTable.Header>
-                    <DataTable.Title>Number</DataTable.Title>
-                    <DataTable.Title>Description</DataTable.Title>
-                    <DataTable.Title>Status</DataTable.Title>
+                    <DataTable.Title style = {styles.header} > Workorders </DataTable.Title>
+                </DataTable.Header>
+
+                <DataTable.Header >
+                    <DataTable.Title style = {styles.header} >Number</DataTable.Title>
+                    <DataTable.Title style = {styles.header} >Description</DataTable.Title>
+                    <DataTable.Title style = {styles.header} >Status</DataTable.Title>
                 </DataTable.Header>
 
                 {table_1.map((item, i) =>{
@@ -74,6 +114,40 @@ const  HomeScreen  = () =>{
 
             </DataTable>
 
+            <DataTable style = {styles.table} >
+
+                <DataTable.Header>
+                    <DataTable.Title style = {styles.header} > Machines </DataTable.Title>
+                </DataTable.Header>
+
+                <DataTable.Header>
+                    <DataTable.Title style = {styles.header} >Machine</DataTable.Title>
+                    <DataTable.Title style = {styles.header} >Status</DataTable.Title>
+                </DataTable.Header>
+                
+                {table_2.map((item, i) =>{
+                    return <Machines list = {item} key = {i} />
+                    })
+                }
+            </DataTable>
+
+            <DataTable style = {styles.table} >
+
+                <DataTable.Header>
+                    <DataTable.Title style = {styles.header} > Parts </DataTable.Title>
+                </DataTable.Header>
+
+                <DataTable.Header>
+                    <DataTable.Title style = {styles.header} >Number</DataTable.Title>
+                    <DataTable.Title style = {styles.header} >Status</DataTable.Title>
+                </DataTable.Header>
+                
+                {table_3.map((item, i) =>{
+                    return <Parts list = {item} key = {i} />
+                    })
+                }
+            </DataTable>
+
 
 
             <Button 
@@ -81,7 +155,7 @@ const  HomeScreen  = () =>{
                 title = "Log out"
                 color = '#9a73ef'
             />
-        </View>
+        </ScrollView>
     )
 }
 
@@ -105,16 +179,30 @@ const styles = StyleSheet.create({
         backgroundColor: 'yellow'
 
     },
+    
+    table: {
+        marginVertical: 50
+    },
+
+    header:{
+        justifyContent: 'center',
+        backgroundColor: '#9a73ef'
+    },
 
     cell:  {
         flex: 0.5, 
         justifyContent: 'space-between', 
-        borderWidth: 1, borderColor: "#9a73ef"
+        borderWidth: 1,
+        borderColor: "#9a73ef",
+        textAlign: 'center',
+        
     },
 
     cell_text : {
         fontFamily:"Avenir", 
         fontSize:20,
+        textAlign: 'center',
+        
     }
 })
 

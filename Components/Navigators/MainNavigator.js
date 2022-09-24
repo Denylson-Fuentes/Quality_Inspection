@@ -5,6 +5,7 @@ import { NativeStackView } from '@react-navigation/native-stack';
 
 // Screens
 import HomeScreen from '../Screens/Home';
+import VisualsScreen from '../Screens/DataVis';
 
 
 
@@ -15,6 +16,7 @@ const MainNavigator = () => {
         <Tab.Navigator>
 
             <Tab.Screen component={HomeScreen} name = "Home" />
+            <Tab.Screen component={VisualsScreen} name = "Visuals"/>
 
         </Tab.Navigator>
     )
